@@ -1,4 +1,5 @@
 # Git-julekalender
+Dette er en adventskalender med git-fakta jeg lagde til julen 2020. Merk at dette var et læringsprosjekt, så det kan finnes feil eller unøyaktigheter, selv om jeg forsøkt å unngå det. Hvis du finner noe kan du lage en issue eller pull request :)
 ## 01.  
 For å legge til flere avsnitt i commit-meldinger, bruk flere '-m'-argumenter, slik: `git commit -m "Tittel" -m "Body"`.
 
