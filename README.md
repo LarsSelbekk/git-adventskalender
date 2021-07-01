@@ -18,7 +18,7 @@ For å starte manuell bisect, skriv `git bisect start`. Checkout den tidligste c
 Såklart trenger ikke dette handle om å finne en bug, og da kan det være tydeligere å skrive `new` og `old` i stedet for `bad` og `good`.
 
 ## 05.  
-`git show <ref>` er en rask måte å se meldingen og endringene i en commit på - den gir diffen fra commiten til den forrige. Alternativt kan du se tilstanden til en fil i den commiten ved `git show <ref>/<filpath>`.
+`git show <ref>` er en rask måte å se meldingen og endringene i en commit på - den gir diffen fra commiten til den forrige. Alternativt kan du se tilstanden til en fil i den commiten ved `git show ref>/<filpath>`.
 
 ## 06.  
 Man kan adde kun deler av en fil med `git add -p [filer]`, du får en interaktiv guide. Alternativt kan man bruke `git add -i` for å gjøre hele add-prosessen interaktiv. For total kontroll over hva som addes kan du bruke "e"-modus i patch-uiet. Da får du opp tekst-editor med en liten guide.
@@ -39,7 +39,7 @@ For å få samme statistikk-oversikt i loggen som når du puller, bruk `git log 
 For å forke et repo uten å bruke knappene til GitHub og GitLab, lag et tomt repo, clone repoet du vil forke. `git remote set-url origin <url>`, push. Hvis du vil beholde det du forket fra som upstream, kjør i stedet `git remote rename origin upstream`, `git remote add origin <url>`, push (sjekk at du pusher til riktig remote). Hvis GitHub eller GitLab lagde et commit du vil overskrive må du force pushe.
 
 ## 12.  
-Dagen har kommet for interactive rebase. For detaljert gjennomgang av det viktige, se [her](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History). Interactive rebase brukes vanligvis for å skrive om historien. Jeg anbefaler å lage en ny branch før man begynner å rebase. Begynn med `git rebase -i <commit>`, hvor <commit> er *parent-en* til den siste du vil redigere. Du kan referere til den commiten med f.eks. `HEAD~<N>`, hvor <N> er antall commits du vil redigere. Det betyr bare commit nr N bakover fra der du er (med `HEAD~0` som nåværende). Du får opp tekst-editor med commitene, men merk at de står i *omvendt* rekkefølge, dvs. nyeste på bunnen. Du kan se for deg hver linje som en kommando git kjører, fra øverst til nederst. For å gjøre en handling på en commit, endre "pick" før commit-hashen og meldingen til et annet alternativ. 
+Dagen har kommet for interactive rebase. For detaljert gjennomgang av det viktige, se [her](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History). Interactive rebase brukes vanligvis for å skrive om historien. Jeg anbefaler å lage en ny branch før man begynner å rebase. Begynn med `git rebase -i <commit>`, hvor `<commit>` er *parent-en* til den siste du vil redigere. Du kan referere til den commiten med f.eks. `HEAD~<N>`, hvor `<N>` er antall commits du vil redigere. Det betyr bare commit nr N bakover fra der du er (med `HEAD~0` som nåværende). Du får opp tekst-editor med commitene, men merk at de står i *omvendt* rekkefølge, dvs. nyeste på bunnen. Du kan se for deg hver linje som en kommando git kjører, fra øverst til nederst. For å gjøre en handling på en commit, endre "pick" før commit-hashen og meldingen til et annet alternativ. 
 
 Dette er alternativene du får for hver commit:
 * pick: behold commit, ikke gjør endringer
@@ -69,11 +69,11 @@ Når man skjønner at git konseptuelt ikke lagrer deltaer, men hele filer, er de
 ## 15.  
 `git restore` er en ny (halv-eksperimentell) kommando (mulig man må oppdatere git for å få den) som skal gjøre det mer brukervennlig å håndtere versjonen til filer.
 Den forsøker å erstatte  
-* `git checkout <commit> -- <filer>` for å resette filer til en annen versjon, med `git restore [--source <commit>] <filer>`. Hvis <commit> ikke oppgis er index (staging area) default.  
+* `git checkout <commit> -- <filer>` for å resette filer til en annen versjon, med `git restore [--source <commit>] <filer>`. Hvis `<commit>` ikke oppgis er index (staging area) default.  
 * `git reset <filer>` for å un-stage endringer, med `git restore --staged <filer>`.  
 * Begge, med `git restore [--source <commit>] --staged --workspace <filer>`.  
 `--workspace` kan erstattes med `-W`. `--staged` kan erstattes med `-S`. `--source` kan erstattes med `-s`.
-En ting som er kan være verdt å merke seg er at når jeg skriver <commit> ber git ofte egentlig om en "tree-ish", som betyr at du kan resette en fil til innholdet til en helt annen fil i en vilkårlig commit - eller til og med utenfor et commit. Se [her](https://stackoverflow.com/a/13754113) hvis du er nysgjerrig.
+En ting som er kan være verdt å merke seg er at når jeg skriver `<commit>` ber git ofte egentlig om en "tree-ish", som betyr at du kan resette en fil til innholdet til en helt annen fil i en vilkårlig commit - eller til og med utenfor et commit. Se [her](https://stackoverflow.com/a/13754113) hvis du er nysgjerrig.
 
 ## 16.  
 Git har hele tre nivåer med config, hvor det mest spesifikke nivået alltid tar presedens. De er:
@@ -119,12 +119,12 @@ Bruk `git log --follow -- <fil>` for å se commits som påvirker en fil, selv hv
 ## 21.  
 Dagens luke er en måte å merge to distinkte repos på. Jeg brukte denne da jeg startet et eget OOP-repo, og så senere ville hente inn øvingene automatisk fra fagstab-repoet, hvis jeg husker riktig. Da merget jeg fagstabens inn i mitt, og beholdt fagstaben som upstream.
 1. Gå til repoet du vil merge det andre inn i.
-2. git remote add <url/til/andre/repo> <remote-name>
-3. git fetch <remote-name>
-4. git branch --track <merge-branch-name> <remote-name>/<target-branch>
-5. git merge <merge-branch-name> --allow-unrelated-histories
+2. `git remote add <url/til/andre/repo> <remote-name>`
+3. `git fetch <remote-name>`
+4. `git branch --track <merge-branch-name> <remote-name>/<target-branch>`
+5. `git merge <merge-branch-name> --allow-unrelated-histories`
 6. Hvis merge conflicts: resolve og commit.
-7. Du kan nå slette <merge-branch-name> (og <remote-name>, hvis du vil).
+7. Du kan nå slette `<merge-branch-name>` (og `<remote-name>`, hvis du vil).
 
 
 ## 22.  
