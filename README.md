@@ -11,7 +11,7 @@ For å søke gjennom commit-meldinger, bruk
 For å se hva som vil commites når du har add-et, bruk `git diff --staged`. Det viser altså _ikke_ endringer som ikke er add-et.
 
 ## 04.  
-Når du ikke vet i hvilken commit en bug ble introdusert, bruk `git bisect.` Den binærsøker commitene ved å checkoute en serie av dem, så kjører du koden og sjekker om buggen var i den commiten. Du kan spesifisere filer eller mapper for å filtrere commitsene som skal sjekkes på med vanlig `--`-notasjon. Alternativt kan du kjøre hele greia automatisk ved å skrive et script som tester koden og endrer hvilken exit-kode den returnerer avhengig av om buggen er til stede. Se [her](https://git-scm.com/docs/git-bisect) for detaljer. 
+Når du ikke vet i hvilken commit en bug ble introdusert, bruk `git bisect`. Den binærsøker commitene ved å checkoute en serie av dem, så kjører du koden og sjekker om buggen var i den commiten. Du kan spesifisere filer eller mapper for å filtrere commitsene som skal sjekkes på med vanlig `--`-notasjon. Alternativt kan du kjøre hele greia automatisk ved å skrive et script som tester koden og endrer hvilken exit-kode den returnerer avhengig av om buggen er til stede. Se [her](https://git-scm.com/docs/git-bisect) for detaljer. 
 
 For å starte manuell bisect, skriv `git bisect start`. Checkout den tidligste commiten du vet har buggen. Skriv `git bisect bad`. Checkout den nyeste commiten du vet ikke har buggen, og skriv `git bisect good`. Git vil da checke ut en commit, du sjekker om buggen eksisterer, og skriver `git bisect good` eller `git bisect bad`. Git går da videre, og gjentar til du har funnet commiten som introduserte buggen. 
 
